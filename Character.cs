@@ -10,7 +10,7 @@ namespace TurnBattle
     public abstract class Character
     {
         public string Name { get;}
-        public int Health { get; private set; }
+        public int Health { get;  set; }
         public int MaxHealth { get; }
         public int AttackDamage { get; }
         public int Defense { get; }
