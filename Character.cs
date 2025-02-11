@@ -21,7 +21,7 @@ namespace TurnBattle
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name cannot be empty.", nameof(name));
             if (health <= 0) throw new ArgumentOutOfRangeException(nameof(health), "Health must be positive.");
-            if (attackDamage < 0) throw new ArgumentOutOfRangeException(nameof(attackDamage), "AttackDamage cannot be negative.");
+            if (attackDamage < 0) throw new ArgumentOutOfRangeException(nameof(attackDamage), "Attack Damage cannot be negative.");
             if (defense < 0) throw new ArgumentOutOfRangeException(nameof(defense), "Defense cannot be negative.");
             if (string.IsNullOrWhiteSpace(abilityName)) throw new ArgumentException("Ability cannot be empty.", nameof(abilityName));
             if (abilityPower <= 0) throw new ArgumentOutOfRangeException(nameof(abilityPower), "AbilityPower must be positive.");

@@ -15,9 +15,10 @@ namespace TurnBattle
             Character mage = new Mage("Merlin", 100, 20, 5, "Arcane Blast", 50);
             Character warrior = new Warrior("Aragorn", 120, 18, 8, "Power of Justice", 40);
             Character defender = new Defender("Braum", 150, 10, 15, "Shield Slam", 20);
+            Character archer = new Archer("Legolas", 90, 35, 3, "Poisoned Arrows", 30);
 
             // Rozpoczynamy bitwę
-            Battle(defender, warrior);
+            Battle(archer, warrior);
 
             // Po zakończeniu czekamy na klawisz, żeby zobaczyć wynik w konsoli
             Console.WriteLine("Press any key to exit...");
