@@ -72,6 +72,7 @@ namespace TurnBattle
             Console.WriteLine("Choose an action:");
             Console.WriteLine("1 - Attack");
             Console.WriteLine("2 - Use Ability (if available)");
+            System.Console.WriteLine("3 - Heal (if has healing item)");
             Console.Write("Your choice: ");
 
             // Wczytujemy wybór z klawiatury
@@ -93,6 +94,17 @@ namespace TurnBattle
                         else
                         {
                             Console.WriteLine("Ability not ready yet, using basic attack instead!");
+                            actingPlayer.Attack(opponent);
+                        }
+                        break;
+                    case "3":
+                        if (actingPlayer.HasHealingItem)
+                        {
+                            actingPlayer.Heal();
+                        }
+                        else
+                        {
+                            Console.WriteLine("No healing items left!, using basic attack instead!");
                             actingPlayer.Attack(opponent);
                         }
                         break;

@@ -17,6 +17,7 @@ namespace TurnBattle
         public string AbilityName { get; }
         public int AbilityPower { get; }
         private int _attacksCount;
+        public int HealingItem { get; set; }
         public Character(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name cannot be empty.", nameof(name));
@@ -33,13 +34,14 @@ namespace TurnBattle
             Defense = defense;
             AbilityName = abilityName;
             AbilityPower = abilityPower;
+            HealingItem = 1;
         }
 
         public bool IsAttackCritical()
         {
             Random random = new Random();
             int chance = random.Next(1, 101);
-            return chance <= 50;
+            return chance <= 20;
         }
         public abstract void Attack(Character target); //metoda ataku, która jest abstrakcyjna, ponieważ każda postać atakuje inaczej
         protected void IncrementAttackCount()
@@ -51,11 +53,17 @@ namespace TurnBattle
             int finalDamage = Math.Max(damage - Defense, 0);
             Health = Math.Max(Health - finalDamage, 0);
         }
-        public virtual void Heal(int amount)
+
+        //metoda leczenia postaci- leczy o 70% brakującego zdrowia postaci. Można się uleczyć tylko raz (jednorazowy przedmiot leczący)
+        public virtual void Heal()
         {
-            Health = Math.Min(Health + amount, MaxHealth);
+            if (Health == MaxHealth) throw new InvalidOperationException("Cannot heal at full health.");
+            Health = (int)(Health + (MaxHealth - Health) * 0.7);
+            Console.WriteLine($"{Name} uses a healing item and restores 70% of their missing health!");
+            HealingItem--;
         }
 
+        public bool HasHealingItem => HealingItem > 0;
         public bool CanUseAbility => _attacksCount >= 3;
         public abstract void UseAbility(Character target);
         public void ResetAttackCount()
