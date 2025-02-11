@@ -15,11 +15,22 @@ namespace TurnBattle
         public override void Attack(Character target)
         {
             int damageDealt = AttackDamage;
-
             if (target == null) throw new ArgumentNullException(nameof(target));
-            Console.WriteLine($"{Name} casts a basic spell dealing {damageDealt} damage to {target.Name}!");
-            target.TakeDamage(damageDealt);
-            IncrementAttackCount();
+            if (IsAttackCritical())
+            {
+                damageDealt *= 2;
+                Console.WriteLine($"{Name} casts a critical spell dealing {damageDealt-target.Defense} damage to {target.Name}!");
+                target.TakeDamage(damageDealt);
+                IncrementAttackCount();
+            }
+            else
+            {
+                Console.WriteLine($"{Name} casts a basic spell dealing {damageDealt-target.Defense} damage to {target.Name}!");
+                target.TakeDamage(damageDealt);
+                IncrementAttackCount();
+            }
+                
+                
         }
 
         public override void UseAbility(Character target)

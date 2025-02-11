@@ -35,6 +35,12 @@ namespace TurnBattle
             AbilityPower = abilityPower;
         }
 
+        public bool IsAttackCritical()
+        {
+            Random random = new Random();
+            int chance = random.Next(1, 101);
+            return chance <= 50;
+        }
         public abstract void Attack(Character target); //metoda ataku, która jest abstrakcyjna, ponieważ każda postać atakuje inaczej
         protected void IncrementAttackCount()
         {

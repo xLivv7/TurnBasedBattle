@@ -17,16 +17,28 @@ namespace TurnBattle
             int damageDealt = AttackDamage;
 
             if (target == null) throw new ArgumentNullException(nameof(target));
-            Console.WriteLine($"{Name} swings their sword dealing {damageDealt} damage to {target.Name}!");
-            target.TakeDamage(damageDealt);
-            IncrementAttackCount();
+
+            if (IsAttackCritical())
+            {
+                damageDealt *= 2;
+                Console.WriteLine($"{Name} swings his sword, hitting the enemy's weak point, dealing {damageDealt-target.Defense} damage!");
+                target.TakeDamage(damageDealt);
+                IncrementAttackCount();
+            }
+            else
+            {
+                Console.WriteLine($"{Name} swings their sword dealing {damageDealt-target.Defense} damage to {target.Name}!");
+                target.TakeDamage(damageDealt);
+                IncrementAttackCount();
+            }
+           
         }
 
         public override void UseAbility(Character target)
         {
             if (target == null) throw new ArgumentNullException(nameof(target));
             if (!CanUseAbility) throw new InvalidOperationException("Cannot use ability yet.");
-            Console.WriteLine($"{Name} summons the power of justice and deals {AbilityPower} damage to {target.Name} with their blade!");
+            Console.WriteLine($"{Name} summons the power of justice and deals {AbilityPower-target.Defense} damage to {target.Name} with their blade!");
             target.TakeDamage(AbilityPower);
             ResetAttackCount();
         }

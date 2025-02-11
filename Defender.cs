@@ -16,11 +16,21 @@ namespace TurnBattle
         public override void Attack(Character target)
         {
             int damageDealt = AttackDamage;
-
             if (target == null) throw new ArgumentNullException(nameof(target));
-            Console.WriteLine($"{Name} attacks {target.Name} with a stout shield bash for {damageDealt} damage!");
-            target.TakeDamage(damageDealt);
-            IncrementAttackCount();
+
+            if (IsAttackCritical())
+            {
+                damageDealt *= 2;
+                System.Console.WriteLine($"{Name} swings their shield with great force, dealing {damageDealt-target.Defense} damage to {target.Name}!");
+                target.TakeDamage(damageDealt);
+                IncrementAttackCount();
+            }
+            else
+            {
+                Console.WriteLine($"{Name} attacks {target.Name} with a stout shield bash for {damageDealt-target.Defense} damage!");
+                target.TakeDamage(damageDealt);
+                IncrementAttackCount();
+            }
         }
 
         public override void TakeDamage(int damage)
@@ -41,7 +51,7 @@ namespace TurnBattle
             if (target == null) throw new ArgumentNullException(nameof(target));
             if (!CanUseAbility) throw new InvalidOperationException("Cannot use ability yet.");
             int damageDealt = AbilityPower;
-            Console.WriteLine($"{Name} slams the shield into the ground, dealing {damageDealt} damage to {target.Name} and fortifying defense!");
+            Console.WriteLine($"{Name} slams the shield into the ground, dealing {damageDealt-target.Defense} damage to {target.Name} and fortifying defense!");
             target.TakeDamage(damageDealt);
             shieldBuffActive = true;
             ResetAttackCount();
