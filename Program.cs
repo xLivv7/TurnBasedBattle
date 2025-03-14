@@ -13,13 +13,13 @@ namespace TurnBattle
         static void Main(string[] args)
         {
             // Tworzymy dwie przykła1dowe postacie:
-            Character mage = new Mage("Merlin", 100, 20, 5, "Arcane Blast", 50);
-            Character warrior = new Warrior("Aragorn", 120, 18, 8, "Power of Justice", 40);
-            Character defender = new Defender("Braum", 150, 10, 15, "Shield Slam", 20);
-            Character archer = new Archer("Legolas", 90, 35, 3, "Poisoned Arrows", 30);
+            Character mage = new Mage("Merlin", 100, 20, 5, "Arcane Blast", 50, 0,50,30);
+            Character warrior = new Warrior("Aragorn", 120, 18, 8, "Power of Justice", 40,0,50,30);
+            Character defender = new Defender("Braum", 150, 10, 15, "Shield Slam", 20, 0, 60, 30);
+            Character archer = new Archer("Legolas", 90, 35, 3, "Poisoned Arrows", 30, 0 , 40,35);
 
             // Rozpoczynamy bitwę
-            Battle(archer, warrior);
+            Battle(mage, warrior);
 
             // Po zakończeniu czekamy na klawisz, żeby zobaczyć wynik w konsoli
             Console.WriteLine("Press any key to exit...");
@@ -45,6 +45,7 @@ namespace TurnBattle
                 // Po każdej pełnej rundzie wypisujemy stan zdrowia
                 Console.WriteLine();
                 Console.WriteLine($"Current HP: {player1.Name} = {player1.Health}, {player2.Name} = {player2.Health}");
+                Console.WriteLine($"Current Mana: {player1.Name} = {player1.Mana}, {player2.Name} = {player2.Mana}");
                 Console.WriteLine();
             }
 
@@ -76,7 +77,7 @@ namespace TurnBattle
             Console.Write("Your choice: ");
 
             // Wczytujemy wybór z klawiatury
-            string input = Console.ReadLine();
+            string? input  = Console.ReadLine();
 
             try
             {
@@ -90,10 +91,11 @@ namespace TurnBattle
                         if (actingPlayer.CanUseAbility)
                         {
                             actingPlayer.UseAbility(opponent);
+                            
                         }
                         else
                         {
-                            Console.WriteLine("Ability not ready yet, using basic attack instead!");
+                            Console.WriteLine("Not enough mana, using basic attack instead!");
                             actingPlayer.Attack(opponent);
                         }
                         break;
@@ -120,6 +122,8 @@ namespace TurnBattle
                 // Jeśli np. target == null, albo Ability not ready, wylądujemy tutaj
                 Console.WriteLine($"Error while {actingPlayer.Name} tries to act: {ex.Message}");
             }
+            actingPlayer.RegenerateMana(5);
+
         }
     }
 }

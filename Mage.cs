@@ -8,7 +8,7 @@ namespace TurnBattle
 {
     public class Mage : Character
     {
-        public Mage(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower) : base(name, health, attackDamage, defense, abilityName, abilityPower)
+        public Mage(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower, int mana, int maxMana, int abilityManaCost) : base(name, health, attackDamage, defense, abilityName, abilityPower, mana, maxMana, abilityManaCost)
         {
         }
 
@@ -21,13 +21,11 @@ namespace TurnBattle
                 damageDealt *= 2;
                 Console.WriteLine($"{Name} casts a critical spell dealing {damageDealt-target.Defense} damage to {target.Name}!");
                 target.TakeDamage(damageDealt);
-                IncrementAttackCount();
             }
             else
             {
                 Console.WriteLine($"{Name} casts a basic spell dealing {damageDealt-target.Defense} damage to {target.Name}!");
                 target.TakeDamage(damageDealt);
-                IncrementAttackCount();
             }
                 
                 
@@ -39,7 +37,7 @@ namespace TurnBattle
             if (!CanUseAbility) throw new InvalidOperationException("Cannot use ability yet.");
             Console.WriteLine($"{Name} unleashes a powerful arcane blast at {target.Name}!");
             target.TakeDamage(AbilityPower);
-            ResetAttackCount();
+            Mana -= AbilityManaCost;
         }
     }
 }

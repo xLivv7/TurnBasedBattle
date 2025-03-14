@@ -16,9 +16,12 @@ namespace TurnBattle
         public int Defense { get; }
         public string AbilityName { get; }
         public int AbilityPower { get; }
-        private int _attacksCount;
+        public int Mana { get; protected set; }
+        public int MaxMana { get; }
+        // Ile many kosztuje użycie umiejętności
+        public int AbilityManaCost { get; }
         public int HealingItem { get; set; }
-        public Character(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower)
+        public Character(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower, int mana,int maxMana, int abilityManaCost)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name cannot be empty.", nameof(name));
             if (health <= 0) throw new ArgumentOutOfRangeException(nameof(health), "Health must be positive.");
@@ -35,6 +38,9 @@ namespace TurnBattle
             AbilityName = abilityName;
             AbilityPower = abilityPower;
             HealingItem = 1;
+            Mana = 0;
+            MaxMana = maxMana;
+            AbilityManaCost=abilityManaCost;
         }
 
         public bool IsAttackCritical()
@@ -44,17 +50,14 @@ namespace TurnBattle
             return chance <= 20;
         }
         public abstract void Attack(Character target); //metoda ataku, która jest abstrakcyjna, ponieważ każda postać atakuje inaczej
-        protected void IncrementAttackCount()
-        {
-            _attacksCount++;
-        }
+        
          public virtual void TakeDamage(int damage)
         {
             int finalDamage = Math.Max(damage - Defense, 0);
             Health = Math.Max(Health - finalDamage, 0);
         }
 
-        //metoda leczenia postaci- leczy o 70% brakującego zdrowia postaci. Można się uleczyć tylko raz (jednorazowy przedmiot leczący)
+        
         public virtual void Heal()
         {
             if (Health == MaxHealth) throw new InvalidOperationException("Cannot heal at full health.");
@@ -64,12 +67,13 @@ namespace TurnBattle
         }
 
         public bool HasHealingItem => HealingItem > 0;
-        public bool CanUseAbility => _attacksCount >= 3;
+        public bool CanUseAbility => Mana >= AbilityManaCost;
         public abstract void UseAbility(Character target);
-        public void ResetAttackCount()
+        public virtual void RegenerateMana(int amount)
         {
-            _attacksCount = 0;
+            if (amount < 0) return;
+            Mana = Math.Min(Mana + amount, MaxMana);
         }
-
+        
     }
 }

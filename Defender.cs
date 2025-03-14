@@ -9,7 +9,7 @@ namespace TurnBattle
     public class Defender : Character
     {
         private bool shieldBuffActive = false;
-        public Defender(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower) : base(name, health, attackDamage, defense, abilityName, abilityPower)
+        public Defender(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower, int mana, int maxMana, int abilityManaCost) : base(name, health, attackDamage, defense, abilityName, abilityPower, mana,maxMana,abilityManaCost)
         {
         }
 
@@ -23,13 +23,13 @@ namespace TurnBattle
                 damageDealt *= 2;
                 System.Console.WriteLine($"{Name} swings their shield with great force, dealing {damageDealt-target.Defense} damage to {target.Name}!");
                 target.TakeDamage(damageDealt);
-                IncrementAttackCount();
+                
             }
             else
             {
                 Console.WriteLine($"{Name} attacks {target.Name} with a stout shield bash for {damageDealt-target.Defense} damage!");
                 target.TakeDamage(damageDealt);
-                IncrementAttackCount();
+                
             }
         }
 
@@ -54,7 +54,8 @@ namespace TurnBattle
             Console.WriteLine($"{Name} slams the shield into the ground, dealing {damageDealt-target.Defense} damage to {target.Name} and fortifying defense!");
             target.TakeDamage(damageDealt);
             shieldBuffActive = true;
-            ResetAttackCount();
+            Mana -= AbilityManaCost;
+            
         }
     }
 }

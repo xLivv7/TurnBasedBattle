@@ -8,7 +8,7 @@ namespace TurnBattle
 {
     public class Warrior : Character
     {
-        public Warrior(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower) : base(name, health, attackDamage, defense, abilityName, abilityPower)
+        public Warrior(string name, int health, int attackDamage, int defense, string abilityName, int abilityPower, int mana, int maxMana, int abilityManaCost) : base(name, health, attackDamage, defense, abilityName, abilityPower, mana, maxMana, abilityManaCost)
         {
         }
 
@@ -23,13 +23,13 @@ namespace TurnBattle
                 damageDealt *= 2;
                 Console.WriteLine($"{Name} swings his sword, hitting the enemy's weak point, dealing {damageDealt-target.Defense} damage!");
                 target.TakeDamage(damageDealt);
-                IncrementAttackCount();
+                
             }
             else
             {
                 Console.WriteLine($"{Name} swings their sword dealing {damageDealt-target.Defense} damage to {target.Name}!");
                 target.TakeDamage(damageDealt);
-                IncrementAttackCount();
+                
             }
            
         }
@@ -40,7 +40,7 @@ namespace TurnBattle
             if (!CanUseAbility) throw new InvalidOperationException("Cannot use ability yet.");
             Console.WriteLine($"{Name} summons the power of justice and deals {AbilityPower-target.Defense} damage to {target.Name} with their blade!");
             target.TakeDamage(AbilityPower);
-            ResetAttackCount();
+            Mana -= AbilityManaCost;
         }
     }
 }
