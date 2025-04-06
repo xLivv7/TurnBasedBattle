@@ -1,0 +1,16 @@
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.Console.csproj.AssemblyReference.cache
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.Console.csproj.CoreCompileInputs.cache
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Console.exe
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Console.deps.json
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Console.runtimeconfig.json
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Console.dll
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Console.pdb
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Core.dll
+C:\projects\mygame\MyGame.Console\bin\Debug\net7.0\MyGame.Core.pdb
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.C.BE567501.Up2Date
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.Console.dll
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\refint\MyGame.Console.dll
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.Console.pdb
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\MyGame.Console.genruntimeconfig.cache
+C:\projects\mygame\MyGame.Console\obj\Debug\net7.0\ref\MyGame.Console.dll

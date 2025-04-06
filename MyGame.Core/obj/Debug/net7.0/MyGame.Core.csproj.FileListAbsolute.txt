@@ -1,0 +1,9 @@
+C:\projects\mygame\MyGame.Core\bin\Debug\net7.0\MyGame.Core.deps.json
+C:\projects\mygame\MyGame.Core\bin\Debug\net7.0\MyGame.Core.dll
+C:\projects\mygame\MyGame.Core\bin\Debug\net7.0\MyGame.Core.pdb
+C:\projects\mygame\MyGame.Core\obj\Debug\net7.0\MyGame.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\mygame\MyGame.Core\obj\Debug\net7.0\MyGame.Core.csproj.CoreCompileInputs.cache
+C:\projects\mygame\MyGame.Core\obj\Debug\net7.0\MyGame.Core.dll
+C:\projects\mygame\MyGame.Core\obj\Debug\net7.0\refint\MyGame.Core.dll
+C:\projects\mygame\MyGame.Core\obj\Debug\net7.0\MyGame.Core.pdb
+C:\projects\mygame\MyGame.Core\obj\Debug\net7.0\ref\MyGame.Core.dll
